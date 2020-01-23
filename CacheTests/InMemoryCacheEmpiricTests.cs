@@ -33,7 +33,8 @@ namespace CacheTests
             //Here i can see the spikes in the old solution which we can see in AppDynamics.
             //Reference solution: full time: 97,646 and the longest execution: 97,273
             //Whereas new solution: full time: 12,939 and the longest execution: 180
-            Assert.True(currentResult.results.Max() < 500);
+            Assert.True(currentResult.results.Max()*10 < referenceResult.results.Max(),
+                "the longest execution in the current solution should be at least 10 times shorter than in the reference one.");
 
             Assert.True(locks.IsEmpty(), "There is a memory leak!");
         }
